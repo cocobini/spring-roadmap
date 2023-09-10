@@ -1,9 +1,12 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+// Component를 메타 애노테이션으로 갖는 Repository 애노테이션을 이용해 Bean 등록
+// @Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     // 실무에서는 동시성 문제를 겪을 수 있기 때문에 공유되는 객체의 경우 ConcurrentHashMap을 사용한다.
