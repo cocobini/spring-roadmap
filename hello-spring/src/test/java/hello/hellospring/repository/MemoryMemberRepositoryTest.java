@@ -42,7 +42,7 @@ class MemoryMemberRepositoryTest {
         member2.setName("spring2");
         repository.save(member2);
 
-        Member result = repository.findByname("spring1").get();
+        Member result = repository.findByName("spring1").get();
 
         assertThat(member1).isEqualTo(result); // 두 객체가 일치하면 테스트 성공
     }

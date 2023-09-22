@@ -5,12 +5,14 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 // Component를 메타 애노테이션으로 갖는 Service 애노테이션을 이용해 Bean 등록
 // @Service
+@Transactional // JPA 사용 시 트랜잭션 처리 필요
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -27,7 +29,7 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByname(member.getName())
+        memberRepository.findByName(member.getName())
                 .ifPresent(m -> { // 리턴값이 null이 아니면 예외 던짐
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });

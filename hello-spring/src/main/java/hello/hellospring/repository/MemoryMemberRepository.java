@@ -28,7 +28,7 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Optional<Member> findByname(String name) {
+    public Optional<Member> findByName(String name) {
         return store.values().stream() // 루프 실행
                 .filter(member -> member.getName().equals(name)) // 매개변수와 현재 조회 중인 객체의 이름이 같으면 필터에 걸림
                 .findAny(); // findAny는 하나라도 일치하면 리턴
