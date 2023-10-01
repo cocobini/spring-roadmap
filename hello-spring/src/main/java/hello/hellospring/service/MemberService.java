@@ -22,10 +22,20 @@ public class MemberService {
     }
 
     public Long join(Member member) {
-        // 중복된 이름은 가입 불가하도록 함
-        validateDuplicateMember(member);
-        memberRepository.save(member);
-        return member.getId();
+
+        // 메서드 동작 시간 측정
+        long start = System.currentTimeMillis();
+
+        try {
+            // 중복된 이름은 가입 불가하도록 함
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        } finally { // 예외가 발생해도 처리되도록 finally 블록에 작성
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        } // 이 메서드를 모든 곳에 찍어줘야 한다면 굉장히 번거로울 것
     }
 
     private void validateDuplicateMember(Member member) {

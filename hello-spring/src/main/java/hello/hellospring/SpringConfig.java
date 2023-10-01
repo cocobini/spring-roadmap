@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
@@ -37,6 +38,11 @@ public class SpringConfig {
     @Bean // MemberService가 빈으로 등록됨
     public MemberService memberService() {
         return new MemberService(memberRepository); // memberRepository 주입
+    }
+
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
 
 //    @Bean // MemberRepository가 빈으로 등록됨

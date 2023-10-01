@@ -29,7 +29,12 @@ public class MemberController {
 
     @Autowired // 생성자를 이용한 의존성 주입(권장됨)
     public MemberController (MemberService memberService) { // MemberService도 어노테이션을 이용해 빈으로 등록해줘야 함
+
         this.memberService = memberService;
+
+        // 프록시 빈인지 확인
+        System.out.println("memberService: " + memberService.getClass());
+
     }
 
     @GetMapping("/members/new")
