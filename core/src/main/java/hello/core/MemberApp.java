@@ -4,10 +4,22 @@ import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+//        AppConfig appConfig = new AppConfig();
+//
+//        // 기존 직접 new를 통해 생성하던 것을 appConfig에 요청하는 식으로 변경
+//        MemberService memberService = appConfig.memberService();
+
+        // ApplicationContext가 스프링 컨테이너라고 보면 됨
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // 빈 등록은 메서드 이름으로 되어있음
+        // 두 번째 매개변수가 리턴타입이 된다.
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 
         // Ctrl + Alt + V 누르면 new XXX();만 적혀있던 걸
         // XXX xxx = new XXX(); 상태로 만들어줌
