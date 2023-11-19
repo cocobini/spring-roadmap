@@ -3,6 +3,9 @@ package hello.core.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
+@Component // 빈 등록을 위해 애노테이션 사용
 public class MemoryMemberRepository implements MemberRepository {
 
     // 데이터가 저장될 Map
