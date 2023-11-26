@@ -1,6 +1,7 @@
 package hello.core.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import hello.core.discount.DiscountPolicy;
@@ -27,8 +28,10 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     // DIP를 지키는 코드로 변경
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    // @Autowired -> 생성자가 1개면 @Autowired 생략 가능
+    public OrderServiceImpl(MemberRepository memberRepository,
+        // @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { // 조회한 빈이 2개 이상이어도 정상적으로 원하는 빈을 찾아옴
+        DiscountPolicy discountPolicy) { 
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
