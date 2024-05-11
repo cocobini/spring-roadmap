@@ -17,14 +17,14 @@ public class BeanValidationTest {
         Validator validator = factory.getValidator();
 
         Item item = new Item();
-        item.setItemName(" "); //공백
+        item.setItemName(" ");
         item.setPrice(0);
         item.setQuantity(10000);
 
         Set<ConstraintViolation<Item>> violations = validator.validate(item);
         for (ConstraintViolation<Item> violation : violations) {
             System.out.println("violation = " + violation);
-            System.out.println("violation = " + violation.getMessage());
+            System.out.println("violation = " + violation.getMessage()); // 기본 제공 메시지가 있음(커스텀 가능)
         }
 
     }
