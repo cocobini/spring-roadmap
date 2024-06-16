@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <!-- 중괄호가 하나면 컨버터를 적용하지 않음-->
+    <li>${number}: <span th:text="${number}" ></span></li> <!-- 타임리프가 자동으로 변환해주는 케이스도 있음 -->
+    <!-- 중괄호가 두 개면 컨버터를 적용-->
+    <li>${{number}}: <span th:text="${{number}}" ></span></li>
+
+    <!-- 객체.toString()-->
+    <li>${ipPort}: <span th:text="${ipPort}" ></span></li>
+    <!-- 컨버터를 호출해서 처리-->
+    <li>${{ipPort}}: <span th:text="${{ipPort}}" ></span></li>
+</ul>
+</body>
+</html>
