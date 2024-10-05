@@ -4,6 +4,7 @@ import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 //@Commit // 롤백이 아닌 강제커밋을 하려면 해당 어노테이션 사요
 @Transactional // 트랜잭션 처리를 자동으로 해줌(테스트에서 동작하면 롤백이 기본 설정)
 @SpringBootTest // @SpringBootApplication 어노테이션을 찾아서 실행
@@ -89,6 +91,8 @@ class ItemRepositoryTest {
         Item item1 = new Item("itemA-1", 10000, 10);
         Item item2 = new Item("itemA-2", 20000, 20);
         Item item3 = new Item("itemB-1", 30000, 30);
+
+        log.info("repository={}", itemRepository.getClass());
 
         itemRepository.save(item1);
         itemRepository.save(item2);
